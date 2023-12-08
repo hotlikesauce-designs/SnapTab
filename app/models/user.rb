@@ -42,9 +42,9 @@ class User < ApplicationRecord
   has_many :feed, through: :following, source: :own_receipts
 
   # Validations
-  validates :username, presence: true
-  validates :username, uniqueness: true
-  validates :username, length: { minimum: 3 }
-  validates :username, length: { maximum: 20 }
+  validates :email, presence: true
+  validates :email, uniqueness: true
+  #validates :username, length: { minimum: 3 }
+  #validates :username, length: { maximum: 20 }
   
 end

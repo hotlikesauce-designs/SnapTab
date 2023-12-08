@@ -1,4 +1,23 @@
 Rails.application.routes.draw do
+  # Routes for the Friend request resource:
+
+  # CREATE
+  post("/insert_friend_request", { :controller => "friend_requests", :action => "create" })
+          
+  # READ
+  get("/friend_requests", { :controller => "friend_requests", :action => "index" })
+  
+  get("/friend_requests/:path_id", { :controller => "friend_requests", :action => "show" })
+  
+  # UPDATE
+  
+  post("/modify_friend_request/:path_id", { :controller => "friend_requests", :action => "update" })
+  
+  # DELETE
+  get("/delete_friend_request/:path_id", { :controller => "friend_requests", :action => "destroy" })
+
+  #------------------------------
+
   # Routes for the Claim resource:
 
   # CREATE

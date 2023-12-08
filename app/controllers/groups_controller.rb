@@ -22,8 +22,15 @@ class GroupsController < ApplicationController
     the_group.group_name = params.fetch("query_group_name")
     the_group.creator_id = current_user.id
     the_group.group_description = params.fetch("query_group_description")
-    the_group.memberships_count = params.fetch("query_memberships_count")
-    the_group.categories_count = params.fetch("query_categories_count")
+    the_group.memberships_count = 1
+    the_group.categories_count = 0
+
+    # also need to create Membership record! 
+    the_member = Membership.new
+    the_member.group_id = the_group.id
+    the_member.user_id = current_user.id
+    the_member.role = "admin"
+    the_member.save
 
     if the_group.valid?
       the_group.save
@@ -31,6 +38,7 @@ class GroupsController < ApplicationController
     else
       redirect_to("/groups", { :alert => the_group.errors.full_messages.to_sentence })
     end
+    
   end
 
   def update

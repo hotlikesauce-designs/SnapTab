@@ -1,0 +1,101 @@
+<div>
+  <div>
+    <h1>
+      Category #<%= @the_category.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/categories">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_category/<%= @the_category.id %>">
+          Delete category
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Group
+      </dt>
+      <dd>
+        <%= @the_category.group_id %>
+      </dd>
+
+      <dt>
+        Category name
+      </dt>
+      <dd>
+        <%= @the_category.category_name %>
+      </dd>
+
+      <dt>
+        Receipts count
+      </dt>
+      <dd>
+        <%= @the_category.receipts_count %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_category.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_category.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit category
+    </h2>
+
+    <form action="/modify_category/<%= @the_category.id %>"  method="post" >
+      <div>
+        <label for="group_id_box">
+          Group
+        </label>
+
+        <input type="text" id="group_id_box" name="query_group_id" value="<%= @the_category.group_id %>">
+      </div>
+
+      <div>
+        <label for="category_name_box">
+          Category name
+        </label>
+
+        <input type="text" id="category_name_box" name="query_category_name" value="<%= @the_category.category_name %>">
+      </div>
+
+      <div>
+        <label for="receipts_count_box">
+          Receipts count
+        </label>
+
+        <input type="text" id="receipts_count_box" name="query_receipts_count" value="<%= @the_category.receipts_count %>">
+      </div>
+
+      <button>
+        Update category
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

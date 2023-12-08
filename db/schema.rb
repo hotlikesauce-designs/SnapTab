@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_08_154353) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_08_154929) do
   create_table "claims", force: :cascade do |t|
     t.integer "user_id"
     t.integer "line_item_id"
@@ -30,6 +30,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_08_154353) do
     t.integer "sender_id"
     t.integer "recipient_id"
     t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string "group_name"
+    t.integer "creator_id"
+    t.string "group_description"
+    t.integer "memberships_count"
+    t.integer "categories_count"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

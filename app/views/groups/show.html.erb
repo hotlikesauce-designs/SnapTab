@@ -1,0 +1,131 @@
+<div>
+  <div>
+    <h1>
+      Group #<%= @the_group.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/groups">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_group/<%= @the_group.id %>">
+          Delete group
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Group name
+      </dt>
+      <dd>
+        <%= @the_group.group_name %>
+      </dd>
+
+      <dt>
+        Creator
+      </dt>
+      <dd>
+        <%= @the_group.creator_id %>
+      </dd>
+
+      <dt>
+        Group description
+      </dt>
+      <dd>
+        <%= @the_group.group_description %>
+      </dd>
+
+      <dt>
+        Memberships count
+      </dt>
+      <dd>
+        <%= @the_group.memberships_count %>
+      </dd>
+
+      <dt>
+        Categories count
+      </dt>
+      <dd>
+        <%= @the_group.categories_count %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_group.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_group.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit group
+    </h2>
+
+    <form action="/modify_group/<%= @the_group.id %>"  method="post" >
+      <div>
+        <label for="group_name_box">
+          Group name
+        </label>
+
+        <input type="text" id="group_name_box" name="query_group_name" value="<%= @the_group.group_name %>">
+      </div>
+
+      <div>
+        <label for="creator_id_box">
+          Creator
+        </label>
+
+        <input type="text" id="creator_id_box" name="query_creator_id" value="<%= @the_group.creator_id %>">
+      </div>
+
+      <div>
+        <label for="group_description_box">
+          Group description
+        </label>
+
+        <input type="text" id="group_description_box" name="query_group_description" value="<%= @the_group.group_description %>">
+      </div>
+
+      <div>
+        <label for="memberships_count_box">
+          Memberships count
+        </label>
+
+        <input type="text" id="memberships_count_box" name="query_memberships_count" value="<%= @the_group.memberships_count %>">
+      </div>
+
+      <div>
+        <label for="categories_count_box">
+          Categories count
+        </label>
+
+        <input type="text" id="categories_count_box" name="query_categories_count" value="<%= @the_group.categories_count %>">
+      </div>
+
+      <button>
+        Update group
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

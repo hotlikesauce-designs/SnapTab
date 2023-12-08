@@ -1,0 +1,118 @@
+<div>
+  <div>
+    <h1>
+      List of all memberships
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new membership
+    </h2>
+
+    <form action="/insert_membership" method="post">
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id">
+      </div>
+
+      <div>
+        <label for="group_id_box">
+          Group
+        </label>
+
+        <input type="text" id="group_id_box" name="query_group_id">
+      </div>
+
+      <div>
+        <label for="role_box">
+          Role
+        </label>
+
+        <input type="text" id="role_box" name="query_role">
+      </div>
+
+      <button>
+        Create membership
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          User
+        </th>
+
+        <th>
+          Group
+        </th>
+
+        <th>
+          Role
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_memberships.each do |a_membership| %>
+      <tr>
+        <td>
+          <%= a_membership.id %>
+        </td>
+
+        <td>
+          <%= a_membership.user_id %>
+        </td>
+
+        <td>
+          <%= a_membership.group_id %>
+        </td>
+
+        <td>
+          <%= a_membership.role %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_membership.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_membership.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/memberships/<%= a_membership.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

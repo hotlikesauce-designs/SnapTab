@@ -1,4 +1,23 @@
 Rails.application.routes.draw do
+  # Routes for the Membership resource:
+
+  # CREATE
+  post("/insert_membership", { :controller => "memberships", :action => "create" })
+          
+  # READ
+  get("/memberships", { :controller => "memberships", :action => "index" })
+  
+  get("/memberships/:path_id", { :controller => "memberships", :action => "show" })
+  
+  # UPDATE
+  
+  post("/modify_membership/:path_id", { :controller => "memberships", :action => "update" })
+  
+  # DELETE
+  get("/delete_membership/:path_id", { :controller => "memberships", :action => "destroy" })
+
+  #------------------------------
+
   # Routes for the Line item resource:
 
   # CREATE

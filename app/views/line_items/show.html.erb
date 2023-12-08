@@ -1,0 +1,131 @@
+<div>
+  <div>
+    <h1>
+      Line item #<%= @the_line_item.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/line_items">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_line_item/<%= @the_line_item.id %>">
+          Delete line item
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Receipt
+      </dt>
+      <dd>
+        <%= @the_line_item.receipt_id %>
+      </dd>
+
+      <dt>
+        Cost
+      </dt>
+      <dd>
+        <%= @the_line_item.cost %>
+      </dd>
+
+      <dt>
+        Quantity
+      </dt>
+      <dd>
+        <%= @the_line_item.quantity %>
+      </dd>
+
+      <dt>
+        Even split flag
+      </dt>
+      <dd>
+        <%= @the_line_item.even_split_flag %>
+      </dd>
+
+      <dt>
+        Claims count
+      </dt>
+      <dd>
+        <%= @the_line_item.claims_count %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_line_item.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_line_item.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit line item
+    </h2>
+
+    <form action="/modify_line_item/<%= @the_line_item.id %>"  method="post" >
+      <div>
+        <label for="receipt_id_box">
+          Receipt
+        </label>
+
+        <input type="text" id="receipt_id_box" name="query_receipt_id" value="<%= @the_line_item.receipt_id %>">
+      </div>
+
+      <div>
+        <label for="cost_box">
+          Cost
+        </label>
+
+        <input type="text" id="cost_box" name="query_cost" value="<%= @the_line_item.cost %>">
+      </div>
+
+      <div>
+        <label for="quantity_box">
+          Quantity
+        </label>
+
+        <input type="text" id="quantity_box" name="query_quantity" value="<%= @the_line_item.quantity %>">
+      </div>
+
+      <div>
+        <input type="checkbox" id="even_split_flag_box" name="query_even_split_flag" value="1" <%= "checked" if @the_line_item.even_split_flag %>>
+
+        <label for="even_split_flag_box">
+            Even split flag
+        </label>
+      </div>
+
+      <div>
+        <label for="claims_count_box">
+          Claims count
+        </label>
+
+        <input type="text" id="claims_count_box" name="query_claims_count" value="<%= @the_line_item.claims_count %>">
+      </div>
+
+      <button>
+        Update line item
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

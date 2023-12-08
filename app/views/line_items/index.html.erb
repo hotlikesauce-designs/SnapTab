@@ -1,0 +1,148 @@
+<div>
+  <div>
+    <h1>
+      List of all line items
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new line item
+    </h2>
+
+    <form action="/insert_line_item" method="post">
+      <div>
+        <label for="receipt_id_box">
+          Receipt
+        </label>
+
+        <input type="text" id="receipt_id_box" name="query_receipt_id">
+      </div>
+
+      <div>
+        <label for="cost_box">
+          Cost
+        </label>
+
+        <input type="text" id="cost_box" name="query_cost">
+      </div>
+
+      <div>
+        <label for="quantity_box">
+          Quantity
+        </label>
+
+        <input type="text" id="quantity_box" name="query_quantity">
+      </div>
+
+      <div>
+        <input type="checkbox" id="even_split_flag_box" name="query_even_split_flag" value="1">
+
+        <label for="even_split_flag_box">Even split flag</label>
+      </div>
+
+      <div>
+        <label for="claims_count_box">
+          Claims count
+        </label>
+
+        <input type="text" id="claims_count_box" name="query_claims_count">
+      </div>
+
+      <button>
+        Create line item
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Receipt
+        </th>
+
+        <th>
+          Cost
+        </th>
+
+        <th>
+          Quantity
+        </th>
+
+        <th>
+          Even split flag
+        </th>
+
+        <th>
+          Claims count
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_line_items.each do |a_line_item| %>
+      <tr>
+        <td>
+          <%= a_line_item.id %>
+        </td>
+
+        <td>
+          <%= a_line_item.receipt_id %>
+        </td>
+
+        <td>
+          <%= a_line_item.cost %>
+        </td>
+
+        <td>
+          <%= a_line_item.quantity %>
+        </td>
+
+        <td>
+          <%= a_line_item.even_split_flag %>
+        </td>
+
+        <td>
+          <%= a_line_item.claims_count %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_line_item.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_line_item.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/line_items/<%= a_line_item.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

@@ -1,4 +1,23 @@
 Rails.application.routes.draw do
+  # Routes for the Line item resource:
+
+  # CREATE
+  post("/insert_line_item", { :controller => "line_items", :action => "create" })
+          
+  # READ
+  get("/line_items", { :controller => "line_items", :action => "index" })
+  
+  get("/line_items/:path_id", { :controller => "line_items", :action => "show" })
+  
+  # UPDATE
+  
+  post("/modify_line_item/:path_id", { :controller => "line_items", :action => "update" })
+  
+  # DELETE
+  get("/delete_line_item/:path_id", { :controller => "line_items", :action => "destroy" })
+
+  #------------------------------
+
   # Routes for the Group resource:
 
   # CREATE

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_08_154929) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_08_155109) do
   create_table "claims", force: :cascade do |t|
     t.integer "user_id"
     t.integer "line_item_id"
@@ -40,6 +40,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_08_154929) do
     t.string "group_description"
     t.integer "memberships_count"
     t.integer "categories_count"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "line_items", force: :cascade do |t|
+    t.integer "receipt_id"
+    t.float "cost"
+    t.float "quantity"
+    t.boolean "even_split_flag"
+    t.integer "claims_count"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -5,7 +5,9 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-  root to: "categories#index"
+  root to: "landing#show"
+
+  get("/", { :controller => "landing", :action => "show" })
 
 
   # Routes for the Category resource:

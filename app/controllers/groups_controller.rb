@@ -20,7 +20,7 @@ class GroupsController < ApplicationController
   def create
     the_group = Group.new
     the_group.group_name = params.fetch("query_group_name")
-    the_group.creator_id = params.fetch("query_creator_id")
+    the_group.creator_id = current_user.id
     the_group.group_description = params.fetch("query_group_description")
     the_group.memberships_count = params.fetch("query_memberships_count")
     the_group.categories_count = params.fetch("query_categories_count")

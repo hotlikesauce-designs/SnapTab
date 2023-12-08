@@ -10,7 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_08_152350) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_08_153458) do
+  create_table "receipts", force: :cascade do |t|
+    t.string "caption"
+    t.string "image"
+    t.integer "owner_id"
+    t.string "location"
+    t.integer "category_id"
+    t.float "subtotal"
+    t.float "tax"
+    t.float "total"
+    t.datetime "datetime"
+    t.integer "comments_count"
+    t.integer "line_items_count"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false

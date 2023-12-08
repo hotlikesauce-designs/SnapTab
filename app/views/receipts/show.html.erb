@@ -1,0 +1,222 @@
+<div>
+  <div>
+    <h1>
+      Receipt #<%= @the_receipt.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/receipts">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_receipt/<%= @the_receipt.id %>">
+          Delete receipt
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Caption
+      </dt>
+      <dd>
+        <%= @the_receipt.caption %>
+      </dd>
+
+      <dt>
+        Image
+      </dt>
+      <dd>
+        <%= @the_receipt.image %>
+      </dd>
+
+      <dt>
+        Owner
+      </dt>
+      <dd>
+        <%= @the_receipt.owner_id %>
+      </dd>
+
+      <dt>
+        Location
+      </dt>
+      <dd>
+        <%= @the_receipt.location %>
+      </dd>
+
+      <dt>
+        Category
+      </dt>
+      <dd>
+        <%= @the_receipt.category_id %>
+      </dd>
+
+      <dt>
+        Subtotal
+      </dt>
+      <dd>
+        <%= @the_receipt.subtotal %>
+      </dd>
+
+      <dt>
+        Tax
+      </dt>
+      <dd>
+        <%= @the_receipt.tax %>
+      </dd>
+
+      <dt>
+        Total
+      </dt>
+      <dd>
+        <%= @the_receipt.total %>
+      </dd>
+
+      <dt>
+        Datetime
+      </dt>
+      <dd>
+        <%= @the_receipt.datetime %>
+      </dd>
+
+      <dt>
+        Comments count
+      </dt>
+      <dd>
+        <%= @the_receipt.comments_count %>
+      </dd>
+
+      <dt>
+        Line items count
+      </dt>
+      <dd>
+        <%= @the_receipt.line_items_count %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_receipt.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_receipt.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit receipt
+    </h2>
+
+    <form action="/modify_receipt/<%= @the_receipt.id %>"  method="post" >
+      <div>
+        <label for="caption_box">
+          Caption
+        </label>
+
+        <input type="text" id="caption_box" name="query_caption" value="<%= @the_receipt.caption %>">
+      </div>
+
+      <div>
+        <label for="image_box">
+          Image
+        </label>
+
+        <input type="text" id="image_box" name="query_image" value="<%= @the_receipt.image %>">
+      </div>
+
+      <div>
+        <label for="owner_id_box">
+          Owner
+        </label>
+
+        <input type="text" id="owner_id_box" name="query_owner_id" value="<%= @the_receipt.owner_id %>">
+      </div>
+
+      <div>
+        <label for="location_box">
+          Location
+        </label>
+
+        <input type="text" id="location_box" name="query_location" value="<%= @the_receipt.location %>">
+      </div>
+
+      <div>
+        <label for="category_id_box">
+          Category
+        </label>
+
+        <input type="text" id="category_id_box" name="query_category_id" value="<%= @the_receipt.category_id %>">
+      </div>
+
+      <div>
+        <label for="subtotal_box">
+          Subtotal
+        </label>
+
+        <input type="text" id="subtotal_box" name="query_subtotal" value="<%= @the_receipt.subtotal %>">
+      </div>
+
+      <div>
+        <label for="tax_box">
+          Tax
+        </label>
+
+        <input type="text" id="tax_box" name="query_tax" value="<%= @the_receipt.tax %>">
+      </div>
+
+      <div>
+        <label for="total_box">
+          Total
+        </label>
+
+        <input type="text" id="total_box" name="query_total" value="<%= @the_receipt.total %>">
+      </div>
+
+      <div>
+        <label for="datetime_box">
+          Datetime
+        </label>
+
+        <input type="datetime-local" id="datetime_box" name="query_datetime"
+         value="<%= @the_receipt.datetime %>">
+      </div>
+
+      <div>
+        <label for="comments_count_box">
+          Comments count
+        </label>
+
+        <input type="text" id="comments_count_box" name="query_comments_count" value="<%= @the_receipt.comments_count %>">
+      </div>
+
+      <div>
+        <label for="line_items_count_box">
+          Line items count
+        </label>
+
+        <input type="text" id="line_items_count_box" name="query_line_items_count" value="<%= @the_receipt.line_items_count %>">
+      </div>
+
+      <button>
+        Update receipt
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

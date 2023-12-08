@@ -1,0 +1,246 @@
+<div>
+  <div>
+    <h1>
+      List of all receipts
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new receipt
+    </h2>
+
+    <form action="/insert_receipt" method="post">
+      <div>
+        <label for="caption_box">
+          Caption
+        </label>
+
+        <input type="text" id="caption_box" name="query_caption">
+      </div>
+
+      <div>
+        <label for="image_box">
+          Image
+        </label>
+
+        <input type="text" id="image_box" name="query_image">
+      </div>
+
+      <div>
+        <label for="owner_id_box">
+          Owner
+        </label>
+
+        <input type="text" id="owner_id_box" name="query_owner_id">
+      </div>
+
+      <div>
+        <label for="location_box">
+          Location
+        </label>
+
+        <input type="text" id="location_box" name="query_location">
+      </div>
+
+      <div>
+        <label for="category_id_box">
+          Category
+        </label>
+
+        <input type="text" id="category_id_box" name="query_category_id">
+      </div>
+
+      <div>
+        <label for="subtotal_box">
+          Subtotal
+        </label>
+
+        <input type="text" id="subtotal_box" name="query_subtotal">
+      </div>
+
+      <div>
+        <label for="tax_box">
+          Tax
+        </label>
+
+        <input type="text" id="tax_box" name="query_tax">
+      </div>
+
+      <div>
+        <label for="total_box">
+          Total
+        </label>
+
+        <input type="text" id="total_box" name="query_total">
+      </div>
+
+      <div>
+        <label for="datetime_box">
+          Datetime
+        </label>
+
+        <input type="datetime-local" id="datetime_box" name="query_datetime">
+      </div>
+
+      <div>
+        <label for="comments_count_box">
+          Comments count
+        </label>
+
+        <input type="text" id="comments_count_box" name="query_comments_count">
+      </div>
+
+      <div>
+        <label for="line_items_count_box">
+          Line items count
+        </label>
+
+        <input type="text" id="line_items_count_box" name="query_line_items_count">
+      </div>
+
+      <button>
+        Create receipt
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Caption
+        </th>
+
+        <th>
+          Image
+        </th>
+
+        <th>
+          Owner
+        </th>
+
+        <th>
+          Location
+        </th>
+
+        <th>
+          Category
+        </th>
+
+        <th>
+          Subtotal
+        </th>
+
+        <th>
+          Tax
+        </th>
+
+        <th>
+          Total
+        </th>
+
+        <th>
+          Datetime
+        </th>
+
+        <th>
+          Comments count
+        </th>
+
+        <th>
+          Line items count
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_receipts.each do |a_receipt| %>
+      <tr>
+        <td>
+          <%= a_receipt.id %>
+        </td>
+
+        <td>
+          <%= a_receipt.caption %>
+        </td>
+
+        <td>
+          <%= a_receipt.image %>
+        </td>
+
+        <td>
+          <%= a_receipt.owner_id %>
+        </td>
+
+        <td>
+          <%= a_receipt.location %>
+        </td>
+
+        <td>
+          <%= a_receipt.category_id %>
+        </td>
+
+        <td>
+          <%= a_receipt.subtotal %>
+        </td>
+
+        <td>
+          <%= a_receipt.tax %>
+        </td>
+
+        <td>
+          <%= a_receipt.total %>
+        </td>
+
+        <td>
+          <%= a_receipt.datetime %>
+        </td>
+
+        <td>
+          <%= a_receipt.comments_count %>
+        </td>
+
+        <td>
+          <%= a_receipt.line_items_count %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_receipt.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_receipt.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/receipts/<%= a_receipt.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

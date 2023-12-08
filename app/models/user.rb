@@ -30,16 +30,16 @@ class User < ApplicationRecord
   # Direct Associations
   has_many  :claims, class_name: "Claim", foreign_key: "user_id", dependent: :destroy
   has_many  :comments, class_name: "Comment", foreign_key: "commenter_id", dependent: :destroy
-  has_many  :sent_follow_requests, class_name: "FriendRequest", foreign_key: "sender_id", dependent: :destroy
-  has_many  :received_follow_requests, class_name: "FriendRequest", foreign_key: "recipient_id", dependent: :destroy
+  has_many  :sent_friend_requests, class_name: "FriendRequest", foreign_key: "sender_id", dependent: :destroy
+  has_many  :received_friend_requests, class_name: "FriendRequest", foreign_key: "recipient_id", dependent: :destroy
   has_many  :own_receipts, class_name: "Receipt", foreign_key: "owner_id", dependent: :destroy
   has_many  :memberships, class_name: "Membership", foreign_key: "user_id", dependent: :destroy
   
   # Indirect Associations
-  has_many :following, through: :sent_follow_requests, source: :recipient
-  has_many :followers, through: :received_follow_requests, source: :sender
+  #has_many :following, through: :sent_follow_requests, source: :recipient
+  #has_many :followers, through: :received_follow_requests, source: :sender
   has_many :my_groups, through: :memberships, source: :group
-  has_many :feed, through: :following, source: :own_receipts
+  #has_many :feed, through: :following, source: :own_receipts
 
   # Validations
   validates :email, presence: true

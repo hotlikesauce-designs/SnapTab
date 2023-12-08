@@ -26,7 +26,6 @@ class Receipt < ApplicationRecord
 
   # Indirect associations
   has_one  :group, through: :category, source: :group
-  has_many :followers, through: :owner, source: :following
   
   # Validations
   validates :owner_id, presence: true

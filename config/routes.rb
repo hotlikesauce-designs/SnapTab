@@ -1,4 +1,23 @@
 Rails.application.routes.draw do
+  # Routes for the Claim resource:
+
+  # CREATE
+  post("/insert_claim", { :controller => "claims", :action => "create" })
+          
+  # READ
+  get("/claims", { :controller => "claims", :action => "index" })
+  
+  get("/claims/:path_id", { :controller => "claims", :action => "show" })
+  
+  # UPDATE
+  
+  post("/modify_claim/:path_id", { :controller => "claims", :action => "update" })
+  
+  # DELETE
+  get("/delete_claim/:path_id", { :controller => "claims", :action => "destroy" })
+
+  #------------------------------
+
   # Routes for the Receipt resource:
 
   # CREATE

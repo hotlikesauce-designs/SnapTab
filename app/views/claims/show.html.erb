@@ -1,0 +1,86 @@
+<div>
+  <div>
+    <h1>
+      Claim #<%= @the_claim.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/claims">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_claim/<%= @the_claim.id %>">
+          Delete claim
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        User
+      </dt>
+      <dd>
+        <%= @the_claim.user_id %>
+      </dd>
+
+      <dt>
+        Line item
+      </dt>
+      <dd>
+        <%= @the_claim.line_item_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_claim.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_claim.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit claim
+    </h2>
+
+    <form action="/modify_claim/<%= @the_claim.id %>"  method="post" >
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_claim.user_id %>">
+      </div>
+
+      <div>
+        <label for="line_item_id_box">
+          Line item
+        </label>
+
+        <input type="text" id="line_item_id_box" name="query_line_item_id" value="<%= @the_claim.line_item_id %>">
+      </div>
+
+      <button>
+        Update claim
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

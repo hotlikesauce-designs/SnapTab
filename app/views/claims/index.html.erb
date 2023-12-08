@@ -1,0 +1,102 @@
+<div>
+  <div>
+    <h1>
+      List of all claims
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new claim
+    </h2>
+
+    <form action="/insert_claim" method="post">
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id">
+      </div>
+
+      <div>
+        <label for="line_item_id_box">
+          Line item
+        </label>
+
+        <input type="text" id="line_item_id_box" name="query_line_item_id">
+      </div>
+
+      <button>
+        Create claim
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          User
+        </th>
+
+        <th>
+          Line item
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_claims.each do |a_claim| %>
+      <tr>
+        <td>
+          <%= a_claim.id %>
+        </td>
+
+        <td>
+          <%= a_claim.user_id %>
+        </td>
+
+        <td>
+          <%= a_claim.line_item_id %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_claim.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_claim.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/claims/<%= a_claim.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

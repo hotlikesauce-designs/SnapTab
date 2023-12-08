@@ -7,11 +7,11 @@
 #  encrypted_password             :string           default(""), not null
 #  memberships_count              :integer
 #  own_receipts_count             :integer
-#  received_follow_requests_count :integer
+#  received_friend_requests_count :integer
 #  remember_created_at            :datetime
 #  reset_password_sent_at         :datetime
 #  reset_password_token           :string
-#  sent_follow_requests_count     :integer
+#  sent_friend_requests_count     :integer
 #  username                       :string
 #  created_at                     :datetime         not null
 #  updated_at                     :datetime         not null

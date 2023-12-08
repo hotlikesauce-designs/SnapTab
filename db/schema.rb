@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_08_155404) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_08_200142) do
   create_table "categories", force: :cascade do |t|
     t.integer "group_id"
     t.string "category_name"
@@ -93,8 +93,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_08_155404) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "username"
-    t.integer "sent_follow_requests_count"
-    t.integer "received_follow_requests_count"
+    t.integer "sent_friend_requests_count"
+    t.integer "received_friend_requests_count"
     t.integer "own_receipts_count"
     t.integer "memberships_count"
     t.datetime "created_at", null: false

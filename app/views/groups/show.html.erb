@@ -89,11 +89,8 @@
         <%# instead of ALL users %>
         
         <select id="group_member_box" name="query_username" value="">
-          <%counter = 0%>
           <% current_user.friend_list.each do |friend| %>
             <option value="<%= friend.username %>"><%= friend.username %></option>
-            <%puts(friend)%>
-            <%counter += 1%>
           <% end %>
         </select>
       </div>

@@ -1,7 +1,7 @@
 <div>
   <div>
     <h1>
-      My Friends
+      <%=current_user.username%>'s Friends
     </h1>
   </div>
 </div>
@@ -58,10 +58,9 @@
     <table border="1">
       <tr>
         <th>
-          Friend
+          Friends
         </th>
-        <th>
-        </th>
+        <th></th>
       </tr>
 
       <% current_user.friend_list.sort_by { |user| -user.username }.each do |a_friend| %>
@@ -71,9 +70,11 @@
           </td>
           <td>
             <% friend_request = FriendRequest.where(sender_id: current_user.id, recipient_id: a_friend.id).or(FriendRequest.where(sender_id: a_friend.id, recipient_id: current_user.id)).first %>
-            <a href="/friend_requests/<%= friend_request.id %>">
-              Show details
-            </a>
+            <form action="/delete_friend_request/<%=friend_request.id%>" method="get">
+              <button>
+                Remove friend
+              </button>
+            </form>
           </td>
         </tr>
       <% end %>
@@ -97,6 +98,8 @@
         </th>
         <th>
         </th>
+        <th>
+        </th>
       </tr>
       <% pending_received_requests_users.each do |a_requestor| %>
         <tr>
@@ -104,7 +107,19 @@
             <%=a_requestor.username%>
           </td>
           <td>
-            hold 2
+            <% the_request_id = FriendRequest.where(sender_id: a_requestor.id, recipient_id: current_user.id).first.id %>
+            <form action="/accept_friend_request/<%=the_request_id%>" method="post">
+              <button>
+                Accept
+              </button>
+            </form>
+          </td>
+          <td>
+            <form action="/delete_friend_request/<%=the_request_id%>" method="get">
+              <button>
+                Reject
+              </button>
+            </form>
           </td>
         </tr>
       <% end %>
@@ -129,13 +144,18 @@
         <th>
         </th>
       </tr>
-      <% pending_sent_requests_users.each do |a_requestor| %>
+      <% pending_sent_requests_users.each do |a_receiver| %>
         <tr>
           <td>
-            <%=a_requestor.username%>
+            <%=a_receiver.username%>
           </td>
           <td>
-            hold 2
+            <% the_receiver_id = FriendRequest.where(sender_id: current_user.id, recipient_id: a_receiver.id).first.id %>
+            <form action="/delete_friend_request/<%=the_receiver_id%>" method="get">
+              <button>
+                Un-request
+              </button>
+            </form>
           </td>
         </tr>
       <% end %>

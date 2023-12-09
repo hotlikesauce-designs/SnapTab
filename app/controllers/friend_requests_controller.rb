@@ -20,8 +20,6 @@ class FriendRequestsController < ApplicationController
   def create
     pp("*"*50)
     pp("*"*50)
-    pp("*"*50)
-    pp("*"*50)
     pp(params)
     pp("*"*50)
 
@@ -54,6 +52,32 @@ class FriendRequestsController < ApplicationController
       redirect_to("/friend_requests/#{the_friend_request.id}", { :notice => "Friend request updated successfully."} )
     else
       redirect_to("/friend_requests/#{the_friend_request.id}", { :alert => the_friend_request.errors.full_messages.to_sentence })
+    end
+  end
+
+  def accept
+    the_id = params.fetch("path_id")
+    the_friend_request = FriendRequest.where({ :id => the_id }).at(0)
+    the_friend_request.status = "accepted"
+
+    if the_friend_request.valid?
+      the_friend_request.save
+      redirect_to("/friend_requests", { :notice => "Friend request updated successfully."} )
+    else
+      redirect_to("/friend_requests", { :alert => the_friend_request.errors.full_messages.to_sentence })
+    end
+  end
+
+  def reject
+    the_id = params.fetch("path_id")
+    the_friend_request = FriendRequest.where({ :id => the_id }).at(0)
+    the_friend_request.status = "accepted"
+
+    if the_friend_request.valid?
+      the_friend_request.save
+      redirect_to("/friend_requests", { :notice => "Friend request updated successfully."} )
+    else
+      redirect_to("/friend_requests", { :alert => the_friend_request.errors.full_messages.to_sentence })
     end
   end
 

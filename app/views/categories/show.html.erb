@@ -89,6 +89,8 @@
       <a href="/receipts/<%= a_receipt.id %>">
         <%= a_receipt.caption %>
       </a>
+      <%= a_receipt.image %>
+      <%= image_tag rails_blob_path(a_receipt.image) if a_receipt.image? %>
     </div>
   </div>
 <% end %>

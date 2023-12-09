@@ -18,16 +18,23 @@ class MembershipsController < ApplicationController
   end
 
   def create
+    
+    the_group_id = params.fetch("group_id")
+    the_username = params.fetch("query_username")
+
+    # pull the corresponding user id from the users table
+    matching_user = User.where({ :username => the_username }).first
+    
     the_membership = Membership.new
-    the_membership.user_id = params.fetch("query_user_id")
-    the_membership.group_id = params.fetch("query_group_id")
-    the_membership.role = params.fetch("query_role")
+    the_membership.user_id = matching_user.id
+    the_membership.group_id = the_group_id
+    the_membership.role = "member"
 
     if the_membership.valid?
       the_membership.save
-      redirect_to("/memberships", { :notice => "Membership created successfully." })
+      redirect_to("/groups/#{the_group_id}", { :notice => "Membership created successfully." })
     else
-      redirect_to("/memberships", { :alert => the_membership.errors.full_messages.to_sentence })
+      redirect_to("/groups/#{the_group_id}", { :alert => the_membership.errors.full_messages.to_sentence })
     end
   end
 

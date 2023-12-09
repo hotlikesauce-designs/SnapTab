@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   # Routes for the Membership resource:
 
   # CREATE
-  post("/insert_membership", { :controller => "memberships", :action => "create" })
+  post("/insert_membership/:group_id", { :controller => "memberships", :action => "create" })
           
   # READ
   get("/memberships", { :controller => "memberships", :action => "index" })

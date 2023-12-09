@@ -16,4 +16,11 @@ class Membership < ApplicationRecord
   
   # Indirect Associations
   # Validations
+  validates :user_id, :presence => true
+  validates :group_id, :presence => true
+  validates :role, :presence => true
+  validates :role, :inclusion => { :in => ["member", "admin"] }
+  validates :user_id, :uniqueness => { :scope => [:group_id], :message => "already exists in group" }
+  
+  # Scopes
 end

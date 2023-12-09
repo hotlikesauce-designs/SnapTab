@@ -72,14 +72,42 @@
 </div>
 
 <hr>
+  <h2>
+     Edit Group Members
+  </h2>
 
+  <div>
+    
+    <%# html form with a dropdown with search options to add group members from friends list %> 
+    <form action="/insert_membership/<%= @the_group.id %>" method="post" >
+      <div>
+        <label for="group_member_box">
+          Group member
+        </label>
+        
+        <%# #TODO: add a dropdown with search options to add group members from friends list %>
+        <%# instead of ALL users %>
+        
+        <select id="group_member_box" name="query_username" value="">
+          <% User.all.each do |friend| %>
+            <option value="<%= friend.username %>"><%= friend.username %></option>
+          <% end %>
+        </select>
+      </div>
+      <button>
+        Add member
+      </button>
+    </form>
+  </div>
+
+<hr>
 
 <div>
   <div>
     <h2>
-      Edit group
+      Edit group details
     </h2>
-
+    
     <form action="/modify_group/<%= @the_group.id %>"  method="post" >
       <div>
         <label for="group_name_box">

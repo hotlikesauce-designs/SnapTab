@@ -44,7 +44,11 @@ class User < ApplicationRecord
   # Validations
   validates :email, presence: true
   validates :email, uniqueness: true
+  validates :username, presence: true
+  validates :username, uniqueness: true
   #validates :username, length: { minimum: 3 }
   #validates :username, length: { maximum: 20 }
-  
+
+  # Scopes
+  # add a scope for the user's friends
 end

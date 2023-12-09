@@ -79,6 +79,7 @@ task({ :sample_data => :environment }) do
   end
 
   #################################################
+  # I know this sucks ... but it works for now
   #FriendRequest.delete_all
   new_friend_requests = []
   used_combinations = []

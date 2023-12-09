@@ -28,9 +28,6 @@ class FriendRequest < ApplicationRecord
   # Indirect Associations
   # Validations
 
-  validates :sender_id, presence: true
-  validates :recipient_id, presence: true
-
   validates :recipient_id, uniqueness: { scope: ["sender_id"], message: "already requested" }
   
   validate :users_cant_friend_themselves

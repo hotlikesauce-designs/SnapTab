@@ -1,10 +1,13 @@
 <div>
   <div>
     <h1>
-      List of all friend requests
+      My Friends
     </h1>
   </div>
 </div>
+
+<% pending_received_requests = FriendRequest.pending.where(recipient: current_user.id) %>
+<% pending_sent_requests = FriendRequest.pending.where(sender: current_user.id) %>
 
 <hr>
 
@@ -25,14 +28,13 @@
           Recipient
         </label>
         
-        <input type="text" id="recipient_id_box" name="query_recipient_id">
-        <!--
-        <select id="recipient_id_box" name="query_recipient_id" value="">
-            <% User.where.not(id: current_user.friend_list.pluck(:id) + [current_user.id]).each do |not_friend| %>
+        <%# <input type="text" id="recipient_id_box" name="query_recipient_id"> %>
+        <select id="recipient_id_box" name="query_recipient_username" value="">
+          <% excluded_ids = current_user.friend_list.pluck(:id) + [current_user.id] + current_user.received_friend_requests.pending.pluck(:sender_id) + current_user.sent_friend_requests.pending.pluck(:recipient_id) %>
+          <% User.where.not(id: excluded_ids).each do |not_friend| %>
             <option value="<%= not_friend.username %>"><%= not_friend.username %></option>
           <% end %>
         </select>
-        -->
 
       </div>
 
@@ -80,3 +82,63 @@
 </div>
 
 <hr>
+<h2>
+  
+  <% pending_received_requests_users = User.where(id: pending_received_requests.pluck(:sender_id).flatten) %>
+
+  You have <%= pending_received_requests.count %> pending <u>recieved</u> friend requests
+</h2>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          Requester
+        </th>
+        <th>
+        </th>
+      </tr>
+      <% pending_received_requests_users.each do |a_requestor| %>
+        <tr>
+          <td>
+            <%=a_requestor.username%>
+          </td>
+          <td>
+            hold 2
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>
+<h2>
+  
+  <% pending_sent_requests_users = User.where(id: pending_sent_requests.pluck(:recipient_id).flatten) %>
+
+  You have <%= pending_sent_requests.count %> pending <u>sent</u> friend requests
+</h2>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          Receiver
+        </th>
+        <th>
+        </th>
+      </tr>
+      <% pending_sent_requests_users.each do |a_requestor| %>
+        <tr>
+          <td>
+            <%=a_requestor.username%>
+          </td>
+          <td>
+            hold 2
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

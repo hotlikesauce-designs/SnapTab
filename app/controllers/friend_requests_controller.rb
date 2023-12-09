@@ -18,9 +18,19 @@ class FriendRequestsController < ApplicationController
   end
 
   def create
+    pp("*"*50)
+    pp("*"*50)
+    pp("*"*50)
+    pp("*"*50)
+    pp(params)
+    pp("*"*50)
+
     the_friend_request = FriendRequest.new
     the_friend_request.sender_id = params.fetch("query_sender_id")
-    the_friend_request.recipient_id = params.fetch("query_recipient_id")
+
+    the_recipient_username = params.fetch("query_recipient_username")
+    the_friend_request.recipient_id = User.where({ :username => the_recipient_username }).at(0).id
+    
     the_friend_request.status = params.fetch("query_status")
 
     if the_friend_request.valid?

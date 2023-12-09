@@ -38,9 +38,9 @@ class ReceiptsController < ApplicationController
 
     if the_receipt.valid?
       the_receipt.save
-      redirect_to("/receipts", { :notice => "Receipt created successfully." })
+      redirect_to("/categories/#{params.fetch("query_category_id")}", { :notice => "Receipt created successfully." })
     else
-      redirect_to("/receipts", { :alert => the_receipt.errors.full_messages.to_sentence })
+      redirect_to("/categories/#{params.fetch("query_category_id")}", { :alert => the_receipt.errors.full_messages.to_sentence })
     end
   end
 
@@ -71,9 +71,9 @@ class ReceiptsController < ApplicationController
   def destroy
     the_id = params.fetch("path_id")
     the_receipt = Receipt.where({ :id => the_id }).at(0)
-
+    the_category_id = the_receipt.category_id
     the_receipt.destroy
 
-    redirect_to("/receipts", { :notice => "Receipt deleted successfully."} )
+    redirect_to("/categories/#{the_category_id}", { :notice => "Receipt deleted successfully."} )
   end
 end

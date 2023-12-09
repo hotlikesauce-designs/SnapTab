@@ -20,4 +20,8 @@ class FriendRequest < ApplicationRecord
   validates :recipient_id, presence: true
   validates :recipient_id, uniqueness: { scope: ["sender_id"], message: "already requested" }
   
+  # Scope to retrieve accepted friend requests
+  scope :accepted, -> {
+    where(status: 'accepted')
+  }
 end

@@ -49,6 +49,21 @@ class User < ApplicationRecord
   #validates :username, length: { minimum: 3 }
   #validates :username, length: { maximum: 20 }
 
-  # Scopes
-  # add a scope for the user's friends
+
+  # Add associations for friends
+  has_many :friends, -> { where('friend_requests.status' => 'accepted') },
+           through: :sent_friend_requests, source: :recipient
+
+  # Method to retrieve friend list
+  def friend_list
+    friends + received_friend_requests.accepted.map(&:sender)
+  end
+
+  # Define a method to calculate the total accepted friend requests count
+  def accepted_friend_requests_count
+    FriendRequest.accepted
+                 .where('(sender_id = :user_id OR recipient_id = :user_id)', user_id: id)
+                 .count
+  end
+
 end

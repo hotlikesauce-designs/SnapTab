@@ -18,18 +18,23 @@ class ReceiptsController < ApplicationController
   end
 
   def create
+    pp("*"*50)
+    pp("*"*50)
+    pp(params)
+    pp("*"*50)
+
     the_receipt = Receipt.new
-    the_receipt.caption = params.fetch("query_caption")
-    the_receipt.image = params.fetch("query_image")
-    the_receipt.owner_id = params.fetch("query_owner_id")
-    the_receipt.location = params.fetch("query_location")
-    the_receipt.category_id = params.fetch("query_category_id")
-    the_receipt.subtotal = params.fetch("query_subtotal")
-    the_receipt.tax = params.fetch("query_tax")
-    the_receipt.total = params.fetch("query_total")
-    the_receipt.datetime = params.fetch("query_datetime")
-    the_receipt.comments_count = params.fetch("query_comments_count")
-    the_receipt.line_items_count = params.fetch("query_line_items_count")
+    the_receipt.caption = params.fetch("query_caption") #added
+    the_receipt.image = params.fetch("query_image") #added
+    the_receipt.owner_id = params.fetch("query_owner_id") #added
+    #the_receipt.location = params.fetch("query_location")
+    the_receipt.category_id = params.fetch("query_category_id") #added
+    #the_receipt.subtotal = params.fetch("query_subtotal")
+    #the_receipt.tax = params.fetch("query_tax")
+    #the_receipt.total = params.fetch("query_total")
+    #the_receipt.datetime = params.fetch("query_datetime")
+    #the_receipt.comments_count = params.fetch("query_comments_count")
+    #the_receipt.line_items_count = params.fetch("query_line_items_count")
 
     if the_receipt.valid?
       the_receipt.save

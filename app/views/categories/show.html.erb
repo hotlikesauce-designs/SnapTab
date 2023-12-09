@@ -87,7 +87,7 @@
   <div>
     <div>
       <a href="/receipts/<%= a_receipt.id %>">
-        <%= a_receipt.receipt_name %>
+        <%= a_receipt.caption %>
       </a>
     </div>
   </div>
@@ -101,14 +101,21 @@
       Add a new receipt
     </h2>
 
-    <form action="/insert_receipt" method="post">
+    <form action="/insert_receipt" method="post" enctype="multipart/form-data">
       <label for="caption">Caption:</label>
-      <input type="text" id="caption" name="receipt[caption]">
+      <input type="text" id="caption" name="query_caption">
 
       <label for="image">Image:</label>
-      <input type="file" id="image" name="receipt[image]">
+      <input type="file" id="image" name="query_image">
 
-      <input type="submit" value="Submit">
+       <%# hidden inputs %>
+      <input type="hidden" name="query_category_id" value="<%= @the_category.id %>">
+      <input type="hidden" name="query_owner_id" value="<%= current_user.id %>">
+
+
+      <button>
+        Submit
+      </button>
     </form>
   </div>
 </div>

@@ -1,128 +1,47 @@
 <div>
+  <h1>
+    Group #<%= @the_group.id %> details
+  </h1>
+
   <div>
-    <h1>
-      Group #<%= @the_group.id %> details
-    </h1>
-
     <div>
-      <div>
-        <a href="/groups">
-          Go back
-        </a>
-      </div>
+      <a href="/groups">
+        Go back
+      </a>
     </div>
-
-    <dl>
-      <dt>
-        Group name
-      </dt>
-      <dd>
-        <%= @the_group.group_name %>
-      </dd>
-
-      <dt>
-        Group description
-      </dt>
-      <dd>
-        <%= @the_group.group_description %>
-      </dd>
-
-      <dt>
-        Memberships count
-      </dt>
-      <dd>
-        <%= @the_group.memberships_count %>
-      </dd>
-
-      <dt>
-        Categories count
-      </dt>
-      <dd>
-        <%= @the_group.categories_count %>
-      </dd>
-
-      <dt>
-        Created at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_group.created_at) %> ago
-      </dd>
-    </dl>
   </div>
 </div>
 
+<table>
+  <tr>
+    <th>Group name</th>
+    <td><%= @the_group.group_name %></td>
+  </tr>
+  <tr>
+    <th>Group description</th>
+    <td><%= @the_group.group_description %></td>
+  </tr>
+  <tr>
+    <th>Memberships count</th>
+    <td><%= @the_group.memberships_count %></td>
+  </tr>
+  <tr>
+    <th>Categories count</th>
+    <td><%= @the_group.categories_count %></td>
+  </tr>
+  <tr>
+    <th>Created at</th>
+    <td><%= time_ago_in_words(@the_group.created_at) %> ago</td>
+  </tr>
+</table>
+
 <hr>
-  <h2>
-     Edit Group Members
-  </h2>
-  <h4>
-    My role: <%= current_user.role_in_group(@the_group) %>
-  </h4>
-
-  <div>
-    
-    <%# html form with a dropdown with search options to add group members from friends list %> 
-    <div>You have <%=current_user.accepted_friend_requests_count%> friends</div>
-    <form action="/insert_membership/<%= @the_group.id %>" method="post" >
-      <div>
-        <label for="group_member_box">
-          Add group members from friend list
-        </label>
-        
-        <select id="group_member_box" name="query_username" value="">
-          <% current_user.friend_list.each do |friend| %>
-            <option value="<%= friend.username %>"><%= friend.username %></option>
-          <% end %>
-        </select>
-      </div>
-      <button>
-        Add member
-      </button>
-    </form>
-  </div>
-
-  <%# list all members of the group %>
-  <div>
-    <h3>
-      Group members
-    </h3>
-
-    <table>
-      <th>User</th>
-      <th>Role</th>
-      <th></th>
-      <% @the_group.members.each do |member| %>
-        <tr>
-          <td>
-            <%= member.username %>
-          </td>
-          <td>
-            <%= member.role_in_group(@the_group) %>
-          </td>
-          <td>
-            <% if current_user.role_in_group(@the_group) == "admin" and member.role_in_group(@the_group) != "admin"%>
-              <% the_membership_id = Membership.where(group_id: @the_group.id, user_id: member.id).first.id %>
-              <form action="/delete_membership/<%= the_membership_id %>" method="get" >
-                <input type="hidden" name="query_group_id" value="<%= @the_group.id %>">
-                <button>
-                  Remove member
-                </button>
-              </form>            
-            <% else %>
-            <%end%>
-          </td>
-        </tr>
-      <%end%>
-    </table>
-    
-    <hr>
-
 <div>
   <div>
     <h2>
       Edit group details
     </h2>
-    
+
     <form action="/modify_group/<%= @the_group.id %>"  method="post" >
       <div>
         <label for="group_name_box">
@@ -153,5 +72,74 @@
     </form>
   </div>
 </div>
+<hr>
+</div>
 
+<div style="display: flex; justify-content: space-between;">
+  <div>
+    <h2>
+      Edit Group Members
+    </h2>
+    <h4>
+      My role: <%= current_user.role_in_group(@the_group) %>
+    </h4>
+
+    <div>
+
+      <%# html form with a dropdown with search options to add group members from friends list %>
+      <div>You have <%=current_user.accepted_friend_requests_count%> friends</div>
+      <form action="/insert_membership/<%= @the_group.id %>" method="post" >
+        <div>
+          <label for="group_member_box">
+            Add group members from friend list
+          </label>
+
+          <select id="group_member_box" name="query_username" value="">
+            <% current_user.friend_list.each do |friend| %>
+              <option value="<%= friend.username %>"><%= friend.username %></option>
+            <% end %>
+          </select>
+        </div>
+        <button>
+          Add member
+        </button>
+      </form>
+    </div>
+  </div>
+  <%# list all members of the group %>
+  <div>
+    <h3>
+      Group members
+    </h3>
+
+    <table>
+      <th>User</th>
+      <th>Role</th>
+      <th></th>
+      <% @the_group.members.each do |member| %>
+        <tr>
+          <td>
+            <%= member.username %>
+          </td>
+          <td>
+            <%= member.role_in_group(@the_group) %>
+          </td>
+          <td>
+            <% if current_user.role_in_group(@the_group) == "admin" and member.role_in_group(@the_group) != "admin"%>
+              <% the_membership_id = Membership.where(group_id: @the_group.id, user_id: member.id).first.id %>
+              <form action="/delete_membership/<%= the_membership_id %>" method="get" >
+                <input type="hidden" name="query_group_id" value="<%= @the_group.id %>">
+                <button>
+                  Remove member
+                </button>
+              </form>
+            <% else %>
+            <%end%>
+          </td>
+        </tr>
+      <%end%>
+    </table>
+  </div>
+  <hr>
+</div>
 <hr>

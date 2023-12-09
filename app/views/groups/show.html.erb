@@ -107,14 +107,33 @@
       Group members
     </h3>
 
-    <ul>
+    <table>
+      <th>User</th>
+      <th>Role</th>
+      <th></th>
       <% @the_group.members.each do |member| %>
-        <li>
-          <%= member.username %> - Role: <%= member.role_in_group(@the_group) %>
-        </li>
-      <% end %>
-    </ul>
-
+        <tr>
+          <td>
+            <%= member.username %>
+          </td>
+          <td>
+            <%= member.role_in_group(@the_group) %>
+          </td>
+          <td>
+            <% if current_user.role_in_group(@the_group) == "admin" and member.role_in_group(@the_group) != "admin"%>
+              <form action="/delete_membership/<%= @the_group.id %>" method="post" >
+                <input type="hidden" name="query_username" value="<%= member.username %>">
+                <button>
+                  Remove member
+                </button>
+              </form>            
+            <% else %>
+            <%end%>
+          </td>
+        </tr>
+      <%end%>
+    </table>
+    
     <hr>
 
 <div>

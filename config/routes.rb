@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   # Routes for the Category resource:
 
   # CREATE
-  post("/insert_category", { :controller => "categories", :action => "create" })
+  post("/insert_category/:group_id", { :controller => "categories", :action => "create" })
           
   # READ
   get("/categories", { :controller => "categories", :action => "index" })

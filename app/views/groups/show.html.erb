@@ -143,3 +143,54 @@
   <hr>
 </div>
 <hr>
+
+<div>
+  <h2>
+    Create a new category
+  </h2>
+
+  <form action="/insert_category/<%= @the_group.id %>" method="post" >
+    <div>
+      <label for="category_name_box">
+        Category name
+      </label>
+
+      <input type="text" id="category_name_box" name="query_category_name" value="">
+    </div>
+
+    <div>
+      <input type="hidden"  name="query_category_group_id" value="<%=@the_group.id%>">
+    </div>
+
+    <button>
+      Create category
+    </button>
+  </form>
+</div>
+<hr>
+<div>
+  <h2>
+    Categories
+  </h2>
+
+  <table class="table table-striped">
+    <th>Category name</th>
+    <th></th>
+    <% @the_group.categories.each do |category| %>
+      <tr>
+        <td>
+          <%= category.category_name %>
+        </td>
+        <td>
+          <% if current_user.role_in_group(@the_group) == "admin" or current_user.role_in_group(@the_group) == "member" %>
+            <a href="/categories/<%= category.id %>">
+              Show category
+            </a>
+          <% end %>
+        </td>
+      </tr>
+    <%end%>
+  </table>
+</div>
+<hr>
+</div>

@@ -59,7 +59,6 @@
 
 <hr>
 
-
 <div>
   <div>
     <h2>
@@ -67,13 +66,6 @@
     </h2>
 
     <form action="/modify_category/<%= @the_category.id %>"  method="post" >
-      <div>
-        <label for="group_id_box">
-          Group
-        </label>
-
-        <input type="text" id="group_id_box" name="query_group_id" value="<%= @the_category.group_id %>">
-      </div>
 
       <div>
         <label for="category_name_box">
@@ -83,17 +75,40 @@
         <input type="text" id="category_name_box" name="query_category_name" value="<%= @the_category.category_name %>">
       </div>
 
-      <div>
-        <label for="receipts_count_box">
-          Receipts count
-        </label>
-
-        <input type="text" id="receipts_count_box" name="query_receipts_count" value="<%= @the_category.receipts_count %>">
-      </div>
-
       <button>
         Update category
       </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<% @the_category.receipts.each do |a_receipt| %>
+  <div>
+    <div>
+      <a href="/receipts/<%= a_receipt.id %>">
+        <%= a_receipt.receipt_name %>
+      </a>
+    </div>
+  </div>
+<% end %>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new receipt
+    </h2>
+
+    <form action="/insert_receipt" method="post">
+      <label for="caption">Caption:</label>
+      <input type="text" id="caption" name="receipt[caption]">
+
+      <label for="image">Image:</label>
+      <input type="file" id="image" name="receipt[image]">
+
+      <input type="submit" value="Submit">
     </form>
   </div>
 </div>

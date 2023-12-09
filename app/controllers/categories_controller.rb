@@ -19,15 +19,14 @@ class CategoriesController < ApplicationController
 
   def create
     the_category = Category.new
-    the_category.group_id = params.fetch("query_group_id")
+    the_category.group_id = params.fetch("query_category_group_id")
     the_category.category_name = params.fetch("query_category_name")
-    the_category.receipts_count = params.fetch("query_receipts_count")
 
     if the_category.valid?
       the_category.save
-      redirect_to("/categories", { :notice => "Category created successfully." })
+      redirect_to("/groups/#{the_category.group_id}", { :notice => "Category created successfully." })
     else
-      redirect_to("/categories", { :alert => the_category.errors.full_messages.to_sentence })
+      redirect_to("/groups/#{the_category.group_id}", { :alert => the_category.errors.full_messages.to_sentence })
     end
   end
 

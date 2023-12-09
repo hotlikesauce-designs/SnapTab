@@ -75,6 +75,9 @@
   <h2>
      Edit Group Members
   </h2>
+  <h4>
+    My role: <%= current_user.role_in_group(@the_group) %>
+  </h4>
 
   <div>
     
@@ -107,12 +110,12 @@
     <ul>
       <% @the_group.members.each do |member| %>
         <li>
-          <%= member.username %>
+          <%= member.username %> - Role: <%= member.role_in_group(@the_group) %>
         </li>
       <% end %>
     </ul>
 
-<hr>
+    <hr>
 
 <div>
   <div>

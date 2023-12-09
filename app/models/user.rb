@@ -68,5 +68,10 @@ class User < ApplicationRecord
                  .where('(sender_id = :user_id OR recipient_id = :user_id)', user_id: id)
                  .count
   end
-
+  
+  def role_in_group(group)
+    membership = memberships.where(group_id: group.id).first
+    membership&.role
+  end
+  
 end

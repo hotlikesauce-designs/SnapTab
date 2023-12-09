@@ -20,7 +20,8 @@ class FriendRequest < ApplicationRecord
 
   belongs_to :recipient, required: true, class_name: "User", foreign_key: "recipient_id", counter_cache: :received_friend_requests_count
   
-  enum status: { pending: "pending", rejected: "rejected", accepted: "accepted" }
+  # rejected is implicit --> delete record from database
+  enum status: { pending: "pending", accepted: "accepted" }
   # Automatic scopes from enum :status
   # scope :accepted, -> { where(status: "accepted" ) }
   # scope :not_accepted, -> { where.not(status: "accepted" ) }

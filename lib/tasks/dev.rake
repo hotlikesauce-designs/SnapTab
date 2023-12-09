@@ -88,7 +88,7 @@ task({ :sample_data => :environment }) do
   # to 2402
   (1608..2402).each do |number|
     # Your code here
-    options = ["accepted", "pending", "rejected"]
+    options = ["accepted", "pending"]
 
     _updated_at = rand(10.years).seconds.ago.strftime("%Y-%m-%d %H:%M:%S")
     _created_at = rand(10.years).seconds.ago.strftime("%Y-%m-%d %H:%M:%S")

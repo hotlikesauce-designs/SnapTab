@@ -27,7 +27,7 @@
         <label for="recipient_id_box">
           Recipient
         </label>
-        
+
         <%# <input type="text" id="recipient_id_box" name="query_recipient_id"> %>
         <select id="recipient_id_box" name="query_recipient_username" value="">
           <% excluded_ids = current_user.friend_list.pluck(:id) + [current_user.id] + current_user.received_friend_requests.pending.pluck(:sender_id) + current_user.sent_friend_requests.pending.pluck(:recipient_id) %>
@@ -84,7 +84,7 @@
 
 <hr>
 <h2>
-  
+
   <% pending_received_requests_users = User.where(id: pending_received_requests.pluck(:sender_id).flatten) %>
 
   You have <%= pending_received_requests.count %> pending <u>recieved</u> friend requests
@@ -129,7 +129,7 @@
 
 <hr>
 <h2>
-  
+
   <% pending_sent_requests_users = User.where(id: pending_sent_requests.pluck(:recipient_id).flatten) %>
 
   You have <%= pending_sent_requests.count %> pending <u>sent</u> friend requests

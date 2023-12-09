@@ -121,8 +121,9 @@
           </td>
           <td>
             <% if current_user.role_in_group(@the_group) == "admin" and member.role_in_group(@the_group) != "admin"%>
-              <form action="/delete_membership/<%= @the_group.id %>" method="post" >
-                <input type="hidden" name="query_username" value="<%= member.username %>">
+              <% the_membership_id = Membership.where(group_id: @the_group.id, user_id: member.id).first.id %>
+              <form action="/delete_membership/<%= the_membership_id %>" method="get" >
+                <input type="hidden" name="query_group_id" value="<%= @the_group.id %>">
                 <button>
                   Remove member
                 </button>

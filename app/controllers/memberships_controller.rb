@@ -55,11 +55,14 @@ class MembershipsController < ApplicationController
   end
 
   def destroy
+    
+    the_group_id = params.fetch("query_group_id")
+
     the_id = params.fetch("path_id")
     the_membership = Membership.where({ :id => the_id }).at(0)
 
     the_membership.destroy
 
-    redirect_to("/memberships", { :notice => "Membership deleted successfully."} )
+    redirect_to("/groups/#{the_group_id}", { :notice => "Membership deleted successfully."} )
   end
 end

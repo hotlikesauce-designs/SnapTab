@@ -10,12 +10,6 @@
           Go back
         </a>
       </div>
-
-      <div>
-        <a href="/delete_group/<%= @the_group.id %>">
-          Delete group
-        </a>
-      </div>
     </div>
 
     <dl>
@@ -153,14 +147,6 @@
       </div>
 
       <div>
-        <label for="creator_id_box">
-          Creator
-        </label>
-
-        <input type="text" id="creator_id_box" name="query_creator_id" value="<%= @the_group.members.first.username %>">
-      </div>
-
-      <div>
         <label for="group_description_box">
           Group description
         </label>
@@ -168,25 +154,16 @@
         <input type="text" id="group_description_box" name="query_group_description" value="<%= @the_group.group_description %>">
       </div>
 
-      <div>
-        <label for="memberships_count_box">
-          Memberships count
-        </label>
-
-        <input type="text" id="memberships_count_box" name="query_memberships_count" value="<%= @the_group.memberships_count %>">
-      </div>
-
-      <div>
-        <label for="categories_count_box">
-          Categories count
-        </label>
-
-        <input type="text" id="categories_count_box" name="query_categories_count" value="<%= @the_group.categories_count %>">
-      </div>
-
       <button>
         Update group
       </button>
+      <div>
+        <% if current_user.role_in_group(@the_group) == "admin" %>
+          <a href="/delete_group/<%= @the_group.id %>">
+            Delete group
+          </a>
+        <% end %>
+      </div>
     </form>
   </div>
 </div>

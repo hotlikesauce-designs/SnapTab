@@ -59,18 +59,18 @@
         </th>
       </tr>
 
-      <% current_user.friend_list.each do |a_friend| %>
-      <tr>
-        <td>
-          <%= a_friend.username %>
-        </td>
-        <td>
-          <% friend_request = FriendRequest.where(sender_id: current_user.id, recipient_id: a_friend.id).or(FriendRequest.where(sender_id: a_friend.id, recipient_id: current_user.id)).first %>
-          <a href="/friend_requests/<%= friend_request.id %>">
-            Show details
-          </a>
-        </td>
-      </tr>
+      <% current_user.friend_list.sort_by { |user| -user.username }.each do |a_friend| %>
+        <tr>
+          <td>
+            <%= a_friend.username %>
+          </td>
+          <td>
+            <% friend_request = FriendRequest.where(sender_id: current_user.id, recipient_id: a_friend.id).or(FriendRequest.where(sender_id: a_friend.id, recipient_id: current_user.id)).first %>
+            <a href="/friend_requests/<%= friend_request.id %>">
+              Show details
+            </a>
+          </td>
+        </tr>
       <% end %>
     </table>
   </div>

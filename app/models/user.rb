@@ -51,12 +51,15 @@ class User < ApplicationRecord
 
 
   # Add associations for friends
-  has_many :friends, -> { where('friend_requests.status' => 'accepted') },
+  has_many :friends_sent, -> { where('friend_requests.status' => 'accepted') },
            through: :sent_friend_requests, source: :recipient
+
+  has_many :friends_received, -> { where('friend_requests.status' => 'accepted') },
+  through: :received_friend_requests, source: :sender
 
   # Method to retrieve friend list
   def friend_list
-    friends + received_friend_requests.accepted.map(&:sender)
+    (friends_sent + friends_received)
   end
 
   # Define a method to calculate the total accepted friend requests count

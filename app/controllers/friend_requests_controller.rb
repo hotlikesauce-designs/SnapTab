@@ -18,14 +18,6 @@ class FriendRequestsController < ApplicationController
   end
 
   def create
-    puts("*"*100)
-    puts("*"*100)
-    puts("*"*100)
-    puts("*"*100)
-    puts("*"*100)
-    puts("*"*100)
-    puts("*"*100)
-    puts(params)
     the_friend_request = FriendRequest.new
     the_friend_request.sender_id = params.fetch("query_sender_id")
     the_friend_request.recipient_id = params.fetch("query_recipient_id")

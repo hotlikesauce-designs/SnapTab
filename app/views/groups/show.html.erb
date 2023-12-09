@@ -79,14 +79,12 @@
   <div>
     
     <%# html form with a dropdown with search options to add group members from friends list %> 
+    <div>You have <%=current_user.accepted_friend_requests_count%> friends</div>
     <form action="/insert_membership/<%= @the_group.id %>" method="post" >
       <div>
         <label for="group_member_box">
-          Group member
+          Add group members from friend list
         </label>
-        
-        <%# #TODO: add a dropdown with search options to add group members from friends list %>
-        <%# instead of ALL users %>
         
         <select id="group_member_box" name="query_username" value="">
           <% current_user.friend_list.each do |friend| %>
@@ -98,7 +96,6 @@
         Add member
       </button>
     </form>
-    <div>You have <%=counter%> friends</div>
   </div>
 
   <%# list all members of the group %>

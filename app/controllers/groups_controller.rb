@@ -1,6 +1,7 @@
 class GroupsController < ApplicationController
   def index
-    matching_groups = Group.all
+    my_memberships = current_user.memberships
+    matching_groups = Group.where({ :id => my_memberships.pluck(:group_id) })
 
     @list_of_groups = matching_groups.order({ :created_at => :desc })
 
@@ -35,7 +36,6 @@ class GroupsController < ApplicationController
       the_member.user_id = current_user.id
       the_member.role = "admin"
       the_member.save
-      MembershipsController.create
 
       redirect_to("/groups", { :notice => "Group created successfully." })
     else

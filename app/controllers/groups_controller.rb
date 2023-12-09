@@ -29,11 +29,13 @@ class GroupsController < ApplicationController
       the_group.save
       
       # also need to create Membership record! 
+      # TODO: consider calling the create method in the memberships controller
       the_member = Membership.new
       the_member.group_id = the_group.id
       the_member.user_id = current_user.id
       the_member.role = "admin"
       the_member.save
+      MembershipsController.create
 
       redirect_to("/groups", { :notice => "Group created successfully." })
     else

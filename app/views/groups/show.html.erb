@@ -100,6 +100,20 @@
     </form>
   </div>
 
+  <%# list all members of the group %>
+  <div>
+    <h3>
+      Group members
+    </h3>
+
+    <ul>
+      <% @the_group.members.each do |member| %>
+        <li>
+          <%= member.username %>
+        </li>
+      <% end %>
+    </ul>
+
 <hr>
 
 <div>
